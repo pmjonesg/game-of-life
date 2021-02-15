@@ -1,7 +1,6 @@
-import { render, screen } from '@testing-library/react';
-import App, {getNeighbours, isAlive} from './App';
+import { getNeighbours, isAlive } from './useGeneration'
 
-describe('Game of Life', () => {
+describe('useGeneration', () => {
   describe('isAlive', () => {
     it('dies by underpopulation if it has less than 2 live neighbours', () => {
       const result = isAlive(true, [true, false, false, false, false, false, false, false])

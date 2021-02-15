@@ -1,6 +1,9 @@
-import MaterialIcon from 'material-icons-react'
+import SkipPreviousIcon from '@material-ui/icons/SkipPrevious'
+import PlayArrowIcon from '@material-ui/icons/PlayArrow'
+import PauseIcon from '@material-ui/icons/Pause'
+import SkipNextIcon from '@material-ui/icons/SkipNext'
 
-function Controls({ handlePlay, handlePause }) {
+function Controls({ paused, handlePlay, handlePause, handlePrevious, handleNext, hasPrevious }) {
   return (
     <div style={{
       display: 'flex',
@@ -9,10 +12,27 @@ function Controls({ handlePlay, handlePause }) {
       padding: '10px',
       background: 'white'
     }}>
-      <MaterialIcon icon="skip_previous" size="medium" />
-      <MaterialIcon icon="play_arrow" size="medium" onClick={handlePlay} />
-      <MaterialIcon icon="pause" size="medium" onClick={handlePause} />
-      <MaterialIcon icon="skip_next" size="medium" />
+      <SkipPreviousIcon
+        disabled={!hasPrevious}
+        onClick={handlePrevious}
+        fontSize="large"
+        color={hasPrevious ? 'action' : 'disabled'}
+      />
+      <PlayArrowIcon
+        onClick={handlePlay}
+        color={!paused ? 'primary' : 'action'}
+        fontSize="large"
+      />
+      <PauseIcon
+        onClick={handlePause}
+        color={paused ? 'primary' : 'action'}
+        fontSize="large"
+      />
+      <SkipNextIcon
+        onClick={paused ? handleNext : () => null}
+        fontSize="large"
+        color={paused ? 'action' : 'disabled'}
+      />
     </div>
   )
 }
